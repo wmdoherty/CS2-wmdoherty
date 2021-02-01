@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <fstream>
 
 using namespace std;
 
@@ -33,8 +34,12 @@ class Account{
         return (double)amount/100.;
     }
 
-    void output() {
-        cout << amount << endl;
+    void output(ostream &out=cout) {
+        out << amount << endl;
+    }
+
+    void input(istream &in=cin) {
+        in >> amount;
     }
 };
 
