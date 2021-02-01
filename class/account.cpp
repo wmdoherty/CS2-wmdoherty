@@ -8,7 +8,7 @@ const int MAXACCOUNT = 1000;
 
 class Account{
     int amount; // in pennies
-    public;
+    public:
     Account(){
         amount=0;
     }
