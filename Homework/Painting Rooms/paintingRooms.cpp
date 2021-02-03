@@ -24,22 +24,22 @@ int main(){
 
     for (int i=0; i < rooms; i++) {
         int walls;
-        cout << "Walls in room " << i << ":";
+        cout << "Walls in room " << i+1 << ": ";
         cin >> walls;
         for(int j=0; j < walls; j++) {
             double height;
             double width;
-            cout << "Height and width of wall " << j << ":";
+            cout << "Height and width of wall " << j+1 << ": ";
             cin >> height >> width;
             sqrft += (height * width);
             int windows;
-            cout << "How many windows or doors are on the wall?" << endl;
+            cout << "Number of windows or doors are on the wall: ";
             cin >> windows;
             if (windows != 0){
                 for (int z=0; z < windows; z++){
                     double wHeight;
                     double wWidth;
-                    cout << "Height and width of window/door " << z << ":";
+                    cout << "Height and width of window/door " << z+1 << ": ";
                     cin >> wHeight >> wWidth;
                     sqrft -= (wHeight * wWidth);
                 }
@@ -48,7 +48,7 @@ int main(){
     }
 
     double gallonsNeeded = ceil(sqrft/coverage);
-    cout << "You will need " << gallonsNeeded << " which will cost $" <<  gallonsNeeded * paintCost <<"." << endl;
+    cout << "You will need " << gallonsNeeded << " gallons of " << paintName<< " paint which will cost $" <<  gallonsNeeded * paintCost <<"." << endl;
 
 
     return 0;
