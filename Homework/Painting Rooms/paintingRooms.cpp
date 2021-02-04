@@ -13,13 +13,14 @@ class Dimensions {
 };
 
 class SqaureFeet {
-    public:
     double sqrft=0;
     int walls;
     int windows;
     int rooms;
     Dimensions wall;
     Dimensions window;
+
+    public:
 
     void addSquareFeet(){
         sqrft += wall.area();
@@ -30,6 +31,8 @@ class SqaureFeet {
     }
 
     double getSquareFeet(){
+        cout << "How many rooms are you going to paint?" << endl;
+        cin >> rooms;
         for (int i=0; i < rooms; i++) {
             cout << "Walls in room " << i+1 << ": ";
             cin >> walls;
@@ -65,9 +68,6 @@ int main(){
     cin >> paintCost;
     cout << "How many square feet will each gallon cover?" << endl;
     cin >> coverage;
-
-    cout << "How many rooms are you going to paint?" << endl;
-    cin >> house.rooms;
 
     double sqrft = house.getSquareFeet();
 
