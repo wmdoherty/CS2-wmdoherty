@@ -6,6 +6,7 @@ using namespace std;
 class Dimensions {
     public:
     double height, width;
+
     double area() {
         return width*height;
     }
