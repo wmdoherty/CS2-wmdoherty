@@ -4,17 +4,59 @@
 using namespace std;
 
 class Dimensions {
-    int height, width;
-    
     public:
-    void set_values (int,int);
-
-    int area() {
+    double height, width;
+    double area() {
         return width*height;
     }
 };
 
+class SqaureFeet {
+    public:
+    double sqrft=0;
+    int walls;
+    int windows;
+    int rooms;
+    Dimensions wall;
+    Dimensions window;
+
+    void addSquareFeet(){
+        sqrft += wall.area();
+    }
+
+    void removeSquareFeet(){
+        sqrft -= window.area();
+    }
+
+    double getSquareFeet(){
+        for (int i=0; i < rooms; i++) {
+            cout << "Walls in room " << i+1 << ": ";
+            cin >> walls;
+            for(int j=0; j < walls; j++) {
+                cout << "Height and width of wall " << j+1 << ": ";
+                cin >> wall.height >> wall.width;
+                addSquareFeet();
+                cout << "Number of windows or doors are on the wall: ";
+                cin >> windows;
+                if (windows != 0){
+                    for (int z=0; z < windows; z++){
+                        cout << "Height and width of window/door " << z+1 << ": ";
+                        cin >> window.height >> window.width;
+                        removeSquareFeet();
+                    }
+                }
+            }
+        }
+    return sqrft;
+    }
+    
+};
+
+
+
 int main(){
+    
+    SqaureFeet house;
     string paintName;
     string paintType;
     float paintCost;
@@ -27,36 +69,10 @@ int main(){
     cout << "How many square feet will each gallon cover?" << endl;
     cin >> coverage;
 
-    int rooms;
     cout << "How many rooms are you going to paint?" << endl;
-    cin >> rooms;
+    cin >> house.rooms;
 
-    double sqrft = 0;
-
-    for (int i=0; i < rooms; i++) {
-        int walls;
-        cout << "Walls in room " << i+1 << ": ";
-        cin >> walls;
-        for(int j=0; j < walls; j++) {
-            double height;
-            double width;
-            cout << "Height and width of wall " << j+1 << ": ";
-            cin >> height >> width;
-            sqrft += (height * width);
-            int windows;
-            cout << "Number of windows or doors are on the wall: ";
-            cin >> windows;
-            if (windows != 0){
-                for (int z=0; z < windows; z++){
-                    double wHeight;
-                    double wWidth;
-                    cout << "Height and width of window/door " << z+1 << ": ";
-                    cin >> wHeight >> wWidth;
-                    sqrft -= (wHeight * wWidth);
-                }
-            }
-        }
-    }
+    double sqrft = house.getSquareFeet();
 
     double gallonsNeeded = ceil(sqrft/coverage);
     cout << "You will need " << gallonsNeeded << " gallons of " << paintName<< " paint which will cost $" <<  gallonsNeeded * paintCost <<"." << endl;
