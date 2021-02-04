@@ -38,12 +38,10 @@ class SqaureFeet {
                 addSquareFeet();
                 cout << "Number of windows or doors are on the wall: ";
                 cin >> windows;
-                if (windows != 0){
-                    for (int z=0; z < windows; z++){
-                        cout << "Height and width of window/door " << z+1 << ": ";
-                        cin >> window.height >> window.width;
-                        removeSquareFeet();
-                    }
+                for (int z=0; z < windows; z++){
+                    cout << "Height and width of window/door " << z+1 << ": ";
+                    cin >> window.height >> window.width;
+                    removeSquareFeet();
                 }
             }
         }
@@ -51,8 +49,6 @@ class SqaureFeet {
     }
     
 };
-
-
 
 int main(){
     
