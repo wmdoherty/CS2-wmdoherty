@@ -34,13 +34,13 @@ class SqaureFeet {
             cout << "Walls in room " << i+1 << ": ";
             cin >> walls;
             for(int j=0; j < walls; j++) {
-                cout << "Height and width of wall " << j+1 << ": ";
+                cout << "Height and width of wall " << j+1 << "(ft): ";
                 cin >> wall.height >> wall.width;
                 addSquareFeet();
                 cout << "Number of windows or doors are on the wall: ";
                 cin >> windows;
                 for (int z=0; z < windows; z++){
-                    cout << "Height and width of window/door " << z+1 << ": ";
+                    cout << "Height and width of window/door " << z+1 << "(ft): ";
                     cin >> window.height >> window.width;
                     removeSquareFeet();
                 }
