@@ -5,6 +5,7 @@ using namespace std;
 
 class Dimensions {
     public:
+
     double height, width;
 
     double area() {
@@ -56,6 +57,7 @@ class SqaureFeet {
 
 class PaintDetails {
     public: 
+    
     string name;
     double cost;
     double coverage;
