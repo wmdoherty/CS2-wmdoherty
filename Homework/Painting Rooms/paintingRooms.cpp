@@ -58,7 +58,6 @@ int main(){
     
     SqaureFeet house;
     string paintName;
-    string paintType;
     float paintCost;
     double coverage;
 
