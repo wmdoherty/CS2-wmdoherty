@@ -3,7 +3,7 @@
 
 using namespace std;
 
-class Dimensions {
+class RectangleDimensions {
     public:
 
     double height, width;
@@ -18,8 +18,8 @@ class SqaureFeet {
     int walls;
     int windows;
     int rooms;
-    Dimensions wall;
-    Dimensions window;
+    RectangleDimensions wall;
+    RectangleDimensions window;
 
     public:
 
@@ -57,7 +57,7 @@ class SqaureFeet {
 
 class PaintDetails {
     public: 
-    
+
     string name;
     double cost;
     double coverage;
