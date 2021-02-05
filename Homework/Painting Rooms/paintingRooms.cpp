@@ -5,7 +5,6 @@ using namespace std;
 
 class RectangleDimensions {
     public:
-
     double height, width;
 
     double area() {
