@@ -31,7 +31,7 @@ class SqaureFeet {
         sqrft -= window.area();
     }
 
-    double getSquareFeet(){
+    void askSquareFeet(){
         cout << "How many rooms are you going to paint?" << endl;
         cin >> rooms;
         for (int i=0; i < rooms; i++) {
@@ -50,31 +50,39 @@ class SqaureFeet {
                 }
             }
         }
-    return sqrft;
+    }
+    double getSquareFeet() {
+        return sqrft;
     }
     
 };
 
 class PaintDetails {
-    public: 
-
     string name;
     double cost;
     double coverage;
 
-    string getPaintName() {
+    public:
+
+    void askPaintName() {
         cout << "What is the name of the paint you will use?" << endl;
         cin >> name;
+    }
+    string getPaintName() {
         return name;
     }
-    double getPaintCost() {
+    void askPaintCost() {
         cout << "What is the cost per gallon of the paint ($)?" << endl;
         cin >> cost;
+    }
+    double getPaintCost(){
         return cost;
     }
-    double getPaintCoverage() {
+    void askPaintCoverage() {
         cout << "How many square feet will each gallon cover?" << endl;
         cin >> coverage;
+    }
+    double getPaintCoverage(){
         return coverage;
     }
 
@@ -85,13 +93,13 @@ int main(){
     SqaureFeet house;
     PaintDetails paint;
 
-    paint.getPaintName();
-    paint.getPaintCost();
-    paint.getPaintCoverage();
-    double sqrft = house.getSquareFeet();
+    paint.askPaintName();
+    paint.askPaintCost();
+    paint.askPaintCoverage();
+    house.askSquareFeet();
 
-    double gallonsNeeded = ceil(sqrft/paint.coverage);
-    cout << "You will need " << gallonsNeeded << " gallons of " << paint.name << " paint which will cost $" <<  gallonsNeeded * paint.cost <<"." << endl;
+    cout << "You will need " << ceil(house.getSquareFeet()/paint.getPaintCoverage()) << " gallons of " << paint.getPaintName() << " paint." << endl;
+    cout << "This will cost $" <<  ceil(house.getSquareFeet()/paint.getPaintCoverage()) * paint.getPaintCost() <<"." << endl;
 
 
     return 0;
