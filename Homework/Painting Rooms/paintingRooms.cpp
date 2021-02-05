@@ -54,9 +54,37 @@ class SqaureFeet {
     
 };
 
+class PaintDetails {
+    string name;
+    double cost;
+    double coverage;
+
+    public:
+
+    string getPaintName() {
+        cout << "What is the name of the paint you will use?" << endl;
+        cin >> name;
+        return name;
+    }
+    double getPaintCost() {
+        cout << "What is the cost per gallon of the paint ($)?" << endl;
+        cin >> cost;
+        return cost;
+    }
+    double getPaintCoverage() {
+        cout << "How many square feet will each gallon cover?" << endl;
+        cin >> coverage;
+        return coverage;
+    }
+
+};
+
 int main(){
     
     SqaureFeet house;
+    PaintDetails paint;
+
+    /*
     string paintName;
     float paintCost;
     double coverage;
@@ -67,11 +95,12 @@ int main(){
     cin >> paintCost;
     cout << "How many square feet will each gallon cover?" << endl;
     cin >> coverage;
+    */
 
     double sqrft = house.getSquareFeet();
 
-    double gallonsNeeded = ceil(sqrft/coverage);
-    cout << "You will need " << gallonsNeeded << " gallons of " << paintName<< " paint which will cost $" <<  gallonsNeeded * paintCost <<"." << endl;
+    double gallonsNeeded = ceil(sqrft/paint.getPaintCoverage());
+    cout << "You will need " << gallonsNeeded << " gallons of " << paint.getPaintName() << " paint which will cost $" <<  gallonsNeeded * paint.getPaintCost() <<"." << endl;
 
 
     return 0;
