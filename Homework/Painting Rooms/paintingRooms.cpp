@@ -100,6 +100,5 @@ int main(){
     cout << "You will need " << ceil(house.getSquareFeet()/paint.getPaintCoverage()) << " gallons of " << paint.getPaintName() << " paint." << endl;
     cout << "This will cost $" <<  ceil(house.getSquareFeet()/paint.getPaintCoverage()) * paint.getPaintCost() <<"." << endl;
 
-
     return 0;
 }
