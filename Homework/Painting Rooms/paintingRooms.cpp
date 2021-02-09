@@ -7,6 +7,8 @@ class RectangleDimensions {
     public:
     double height, width;
 
+    RectangleDimensions();
+
     double area() {
         return width*height;
     }
@@ -21,6 +23,10 @@ class SqaureFeet {
     RectangleDimensions window;
 
     public:
+
+    SqaureFeet(double newSqrft){
+        sqrft = newSqrft;
+    }
 
     void addSquareFeet(){
         sqrft += wall.area();
@@ -62,6 +68,8 @@ class PaintDetails {
     double coverage;
 
     public:
+
+    PaintDetails();
 
     void askPaintName() {
         cout << "What is the name of the paint you will use?" << endl;
