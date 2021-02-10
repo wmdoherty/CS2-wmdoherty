@@ -7,15 +7,18 @@ class RectangleDimensions {
     public:
     double height, width;
 
-    RectangleDimensions();
+    RectangleDimensions(){
+        height=0;
+        width=0;
+    }
 
     double area() {
         return width*height;
     }
 };
 
-class SqaureFeet {
-    double sqrft=0;
+class SquareFeet{
+    double sqrft;
     int walls;
     int windows;
     int rooms;
@@ -24,8 +27,11 @@ class SqaureFeet {
 
     public:
 
-    SqaureFeet(double newSqrft){
-        sqrft = newSqrft;
+    SquareFeet(){
+        sqrft=0;
+        walls=0;
+        windows=0;
+        rooms=0;
     }
 
     void addSquareFeet(){
@@ -69,7 +75,11 @@ class PaintDetails {
 
     public:
 
-    PaintDetails();
+    PaintDetails(){
+        name="undefined";
+        cost=0;
+        coverage=0;
+    }
 
     void askPaintName() {
         cout << "What is the name of the paint you will use?" << endl;
@@ -92,12 +102,11 @@ class PaintDetails {
     double getPaintCoverage(){
         return coverage;
     }
-
 };
 
 int main(){
     
-    SqaureFeet house;
+    SquareFeet house;
     PaintDetails paint;
 
     paint.askPaintName();
@@ -105,7 +114,7 @@ int main(){
     paint.askPaintCoverage();
     house.askSquareFeet();
 
-    cout << "You will need " << ceil(house.getSquareFeet()/paint.getPaintCoverage()) << " gallons of " << paint.getPaintName() << " paint." << endl;
+    cout << endl << "You will need " << ceil(house.getSquareFeet()/paint.getPaintCoverage()) << " gallons of " << paint.getPaintName() << " paint." << endl;
     cout << "This will cost $" <<  ceil(house.getSquareFeet()/paint.getPaintCoverage()) * paint.getPaintCost() <<"." << endl;
 
     return 0;
