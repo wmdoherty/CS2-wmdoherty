@@ -41,8 +41,9 @@ class Complex {
     }
 
     bool operator ==(const Complex &other) const {
-        return !(*this<other || other<*this)
+        return !(*this<other || other<*this);
     }
+
     friend ostream & operator <<(ostream &out, const Complex &other){
             out << other.a << "+" << other.b << "i ";
     }
@@ -55,7 +56,7 @@ int main(){
     int n=0;
     while (z<Complex(2.0) && n<100) {
         z=(z^2)+c;
-        n++
+        n++;
     }
     cout << z << " " << n << endl;
     return 0;
