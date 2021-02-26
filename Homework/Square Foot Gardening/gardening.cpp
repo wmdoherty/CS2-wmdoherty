@@ -15,11 +15,9 @@ class Box{
     int getBoxDimensions(){
         return box[0];
     }
-
     int getBoxSquareFeet(){
         return box[0]*box[1];
     }
-
 };
 
 class Plant {
@@ -39,6 +37,9 @@ class Plant {
     }
     int getPlantSquareFeet(){
         return dimensions[0]*dimensions[1];
+    }
+    string getPlantName(){
+        return name;
     }
 };
 
@@ -75,6 +76,6 @@ int main(){
     cout << garden.getBoxDimensions() << endl;
     cout << garden.getBoxSquareFeet() << endl;
     Tree tree;
-    cout << tree.getPlantWidth() << endl;
+    cout << tree.getPlantName() << " is "<< tree.getPlantWidth() << " ft wide." << endl;
     return 0;
 }
