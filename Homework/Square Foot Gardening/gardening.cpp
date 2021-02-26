@@ -13,11 +13,11 @@ class Box{
         box.push_back(4);
     }
     int getBoxDimensions(){
-        return box.operator[](0);
+        return box[0];
     }
 
     int getBoxSquareFeet(){
-        return (box.operator[](0))*(box.operator[](1));
+        return box[0]*box[1];
     }
 
 };
@@ -33,6 +33,12 @@ class Plant {
     void width(int newDimension) {
         dimensions.push_back(newDimension);
         dimensions.push_back(newDimension);
+    }
+    int getPlantWidth(){
+        return dimensions[0];
+    }
+    int getPlantSquareFeet(){
+        return dimensions[0]*dimensions[1];
     }
 };
 
@@ -68,5 +74,7 @@ int main(){
     Box garden;
     cout << garden.getBoxDimensions() << endl;
     cout << garden.getBoxSquareFeet() << endl;
+    Tree tree;
+    cout << tree.getPlantWidth() << endl;
     return 0;
 }
