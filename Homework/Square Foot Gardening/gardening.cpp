@@ -41,6 +41,20 @@ class Plant {
     string getPlantName(){
         return name;
     }
+
+    void printMenu(){
+        cout << "Small Plants:" << endl;
+        cout << "1. Kale" << endl;
+        cout << "2. Rosemary" << endl;
+        cout << "3. Basil" << endl;
+        cout << "Medium Plants:" << endl;
+        cout << "4. Broccoli" << endl;
+        cout << "5. Cauliflower" << endl;
+        cout << "6. Cabbage" << endl;
+        cout << "Shrubs:" << endl;
+        cout << "7. Evergreen Shrub" << endl;
+        cout << "8. " 
+    }
 };
 
 class SmallPlant: public Plant {
