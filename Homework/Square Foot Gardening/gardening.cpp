@@ -53,7 +53,12 @@ class Plant {
         cout << "6. Cabbage" << endl;
         cout << "Shrubs:" << endl;
         cout << "7. Evergreen Shrub" << endl;
-        cout << "8. " 
+        cout << "8. Japanese Barberry" << endl;
+        cout << "9. Butterfly Bush" << endl;
+        cout << "Trees:" << endl;
+        cout << "10. Peach Tree" << endl;
+        cout << "11. Crab Apple Tree" << endl;
+        cout << "12. Plum Tree" << endl;
     }
 };
 
@@ -90,6 +95,7 @@ int main(){
     cout << garden.getBoxDimensions() << endl;
     cout << garden.getBoxSquareFeet() << endl;
     Tree tree;
+    tree.printMenu();
     cout << tree.getPlantName() << " is "<< tree.getPlantWidth() << " ft wide." << endl;
     return 0;
 }
