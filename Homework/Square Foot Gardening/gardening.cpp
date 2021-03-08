@@ -112,19 +112,19 @@ int main(){
         cin >> selection;
         if(selection<=3) {
             SmallPlant smallPlant;
-            cout << smallPlant.getPlantName() << " is "<< smallPlant.getPlantWidth() << " ft wide." << endl;
+            //cout << smallPlant.getPlantName() << " is "<< smallPlant.getPlantWidth() << " ft wide." << endl;
         }
         else if(selection<=6){
             MediumPlant mediumPlant;
-            cout << mediumPlant.getPlantName() << " is "<< mediumPlant.getPlantWidth() << " ft wide." << endl;
+            //cout << mediumPlant.getPlantName() << " is "<< mediumPlant.getPlantWidth() << " ft wide." << endl;
         }
         else if(selection<=9){
             Shrub shrub;
-            cout << shrub.getPlantName() << " is "<< shrub.getPlantWidth() << " ft wide." << endl;
+            //cout << shrub.getPlantName() << " is "<< shrub.getPlantWidth() << " ft wide." << endl;
         }
         else if(selection<=12){
             Tree tree;
-            cout << tree.getPlantName() << " is "<< tree.getPlantWidth() << " ft wide." << endl;
+            //cout << tree.getPlantName() << " is "<< tree.getPlantWidth() << " ft wide." << endl;
         }
         cout << "Would you like to continue? [Y/y] ";
         cin >> answer;
