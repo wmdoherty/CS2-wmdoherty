@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <algorithm>
 
 using namespace std;
 
@@ -14,8 +15,11 @@ class Contact{
         last=newLast;
         phone=newPhone;
     }
-    bool isEqual(const Contact &other){
+    bool isEqual(const Contact &other) const{
         return (other.first==first) && (other.last==last);
+    }
+    bool operator==(const Contact &second) const{
+        return isEqual(second);
     }
     void output(ostream &out=cout){
         out << first << " " << last << " " << phone << endl;
@@ -67,10 +71,16 @@ void deleteContact(Contact c){
 vector<Contact> contacts;
 
 int main(){
-    contacts.push_back(Contact("Karl", "Castleton", "970-248-1837"));
+    contacts.push_back(Contact("Karl", "Castleton", "970-248-1837")); //adds contact
     contacts.push_back(Contact("John", "Doe", "555-555-5555"));
     for (unsigned int i=0; i<contacts.size(); i++){
         contacts[i].output();
+    }
+
+    auto vend=contacts.end();
+    vend=remove(contacts.begin(), contacts.end(), Contact("John", "Doe", "")); //removes contact
+    for (auto it=contacts.begin(); it!=vend; it++){
+        it->output();
     }
 
     return 0;
