@@ -14,12 +14,32 @@ class IntLinkedList {
         newNode->next=next;
         next=newNode;
     }
+    void remove(int checkValue){
+        if(value==checkValue){
+            IntLinkedList *p=next;
+            value=p->next;
+            next=p->next;
+            delete p;
+        } else {
+            if (next!=NULL)
+                next->remove(checkValue);
+        }
+    }
+
+    void outputR(ostream &out=cout){
+        out << value;
+        if(next!=NULL){
+            out << "->";
+            next->outputR(out);
+        }
+        out << endl;
+    }
     void output (ostream &out=cout){
         IntLinkedList *p;
         p=this;
         while (p!=NULL){
-            out << value << "->";
-            p=next;
+            out << p->value << "->";
+            p=p->next;
         }
         out << endl;
     }
@@ -27,8 +47,11 @@ class IntLinkedList {
 
 int main(){
     IntLinkedList head(0);
+    head.output();
     head.add(new IntLinkedList(100));
     head.add(new IntLinkedList(101));
+    head.output();
+    head.remove(101);
     head.output();
 
     /*
