@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
 
 using namespace std;
 
@@ -11,7 +12,7 @@ class Box{
     Box(){
         box.push_back(4);
     }
-    int getBoxDimensions(){
+    int getBoxWidth(){
         return box[0];
     }
     int getBoxSquareFeet(){
@@ -44,18 +45,23 @@ class Plant {
     string name;
     vector <int> dimensions;
     int area;
+    int boxNumber;
 
     public:
-    Plant(string newName) {
-        name=newName;
+    Plant() {
         area=0;
+        boxNumber=0;
     }
-    void width(int newDimension) {
+
+
+    void addPlantWidth(int newDimension) {
         dimensions.push_back(newDimension);
     }
+
     int getPlantWidth(int plantNumber){
         return dimensions[plantNumber];
     }
+
     int getPlantSquareFeet(int plantNumber){
         return dimensions[plantNumber]*dimensions[plantNumber];
     }
@@ -70,67 +76,52 @@ class Plant {
         return area;
     }
 
-};
-
-class SmallPlant: public Plant {
-    public:
-    SmallPlant(string newName="Small Plant"):Plant(newName){
-        width(1);
+    void sortVector(){
+        sort(dimensions.rbegin(), dimensions.rend());
     }
-};
 
-class MediumPlant: public Plant {
-    public:
-    MediumPlant(string newName="Medium Plant"):Plant(newName){
-        width(2);
+    void determineBoxNumber(){
+        for (unsigned int i=0; i<dimensions.size(); i++){
+            if(dimensions[i]==4) boxNumber++;
+            else if(dimensions[i]==3){
+                for(unsigned int j=0; j<dimensions.size(); i++){
+                    if (dimensions[i]==1){
+                        dimensions.pop_back();
+                        continue;
+                    }
+                }
+            }
+        }
     }
-};
 
-class Shrub: public Plant {
-    public:
-    Shrub(string newName="Shrub"):Plant(newName){
-        width(3);
-    }
-};
-
-class Tree: public Plant {
-    public:
-    Tree(string newName="Tree"):Plant(newName){
-        width(4);
-    }
 };
 
 int main(){
+    Plant dimensions;
     vector <Box> garden;
-    SmallPlant plant;
 
     int selection;
-    int plantNumber=0;
     string answer="y";
     while(answer=="y" || answer=="Y"){ 
         garden[0].printMenu();
         cin >> selection;
         if(selection<=3) {
-            SmallPlant smallPlant;
-            //cout << smallPlant.getPlantName() << " is "<< smallPlant.getPlantWidth() << " ft wide." << endl;
+            dimensions.addPlantWidth(1);
         }
         else if(selection<=6){
-            MediumPlant mediumPlant;
-            //cout << mediumPlant.getPlantName() << " is "<< mediumPlant.getPlantWidth() << " ft wide." << endl;
+            dimensions.addPlantWidth(2);
         }
         else if(selection<=9){
-            Shrub shrub;
-            //cout << shrub.getPlantName() << " is "<< shrub.getPlantWidth() << " ft wide." << endl;
+            dimensions.addPlantWidth(3);
         }
         else if(selection<=12){
-            Tree tree;
-            //cout << tree.getPlantName() << " is "<< tree.getPlantWidth() << " ft wide." << endl;
+            dimensions.addPlantWidth(4);
         }
         cout << "Would you like to continue? [Y/y] ";
         cin >> answer;
-        plantNumber++;
     }
-    cout << "Total area = " << plant.getTotalArea() << endl;
+    dimensions.sortVector();
+
 
     return 0;
 }
