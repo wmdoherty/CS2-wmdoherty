@@ -26,7 +26,7 @@ class IntLinkedList {
         }
     }
 
-    void outputR(ostream &out=cout){
+    void outputR(ostream &out=cout){ //recursive output
         out << value;
         if(next!=NULL){
             out << "->";
