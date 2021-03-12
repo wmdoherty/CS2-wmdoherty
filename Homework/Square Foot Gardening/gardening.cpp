@@ -80,18 +80,46 @@ class Plant {
         sort(dimensions.rbegin(), dimensions.rend());
     }
 
-    void determineBoxNumber(){
+    int determineBoxNumber(){
         for (unsigned int i=0; i<dimensions.size(); i++){
             if(dimensions[i]==4) boxNumber++;
             else if(dimensions[i]==3){
-                for(unsigned int j=0; j<dimensions.size(); i++){
-                    if (dimensions[i]==1){
-                        dimensions.pop_back();
-                        continue;
+                boxNumber++;
+                int openSpaces=7;
+                while (openSpaces>0 && i<dimensions.size()){
+                    if (dimensions[i+1]==1)
+                        i++;
+                    else break;
+                }
+            }
+            else if(dimensions[i]==2){
+                boxNumber++;
+                int openSpaces=12;
+                while(openSpaces>0 && i<dimensions.size()){
+                    if (dimensions[i+1]==2){
+                        openSpaces=openSpaces-4;
+                        i++;
                     }
+                    else if(dimensions[i+1]==0){
+                        openSpaces--;
+                        i++;
+                    }
+                    else break;
+                }
+            }
+            else if(dimensions[i]==1){
+                boxNumber++;
+                int openSpaces=15;
+                while(openSpaces>0 && i<dimensions.size()){
+                    if(dimensions[i+1]==1) {
+                        i++;
+                        openSpaces--;
+                    }
+                    else break;
                 }
             }
         }
+        return boxNumber;
     }
 
 };
@@ -117,10 +145,16 @@ int main(){
         else if(selection<=12){
             dimensions.addPlantWidth(4);
         }
+        else{
+            cout << "Invalid selection. Select a different option." << endl;
+            continue;
+        }
         cout << "Would you like to continue? [Y/y] ";
         cin >> answer;
     }
     dimensions.sortVector();
+    cout << "You will need " << dimensions.determineBoxNumber() << " boxes." << endl;
+    cout << "Total area of plants=" << dimensions.getTotalArea() << endl;
 
 
     return 0;
