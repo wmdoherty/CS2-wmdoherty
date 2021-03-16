@@ -19,7 +19,7 @@ class Box{
         return box[0]*box[1];
     }
 
-        void printMenu(){
+    void printMenu(){
         cout << "Choose from the following plants:" << endl << endl;
         cout << "Small Plants:" << endl;
         cout << "1. Kale" << endl;
@@ -53,7 +53,6 @@ class Plant {
         boxNumber=0;
     }
 
-
     void addPlantWidth(int newDimension) {
         dimensions.push_back(newDimension);
     }
@@ -69,7 +68,6 @@ class Plant {
         return name;
     }
     int getTotalArea(){
-
         for(unsigned i=0; i<dimensions.size(); i++){
             area+=(dimensions[i]*dimensions[i]);
         }
@@ -82,7 +80,9 @@ class Plant {
 
     int determineBoxNumber(){
         for (unsigned int i=0; i<dimensions.size(); i++){
-            if(dimensions[i]==4) boxNumber++;
+            if(dimensions[i]==4){
+                boxNumber++;
+            }
             else if(dimensions[i]==3){
                 boxNumber++;
                 int openSpaces=7;
@@ -121,7 +121,6 @@ class Plant {
         }
         return boxNumber;
     }
-
 };
 
 int main(){
@@ -149,13 +148,12 @@ int main(){
             cout << "Invalid selection. Select a different option." << endl;
             continue;
         }
-        cout << "Would you like to continue? [Y/y] ";
+        cout << "Would you like to add another plant? [Y/y] ";
         cin >> answer;
     }
     dimensions.sortVector();
     cout << "You will need " << dimensions.determineBoxNumber() << " boxes." << endl;
     cout << "Total area of plants=" << dimensions.getTotalArea() << endl;
-
 
     return 0;
 }
