@@ -14,6 +14,7 @@ arrayListType
 +print() const: void
 +insertAt(iny,int)=0: void
 +insertEnd(int)=0: void
++arrayListType(int = 100)
 */
 
 class arrayListType{
@@ -22,6 +23,11 @@ class arrayListType{
     int length;
     int maxSize;
     public:
+    arrayListType(int newMax=100){
+        maxSize=newMax;
+        list=new int[newMax];
+        length=0;
+    }
     bool isEmpty() const{
         return length==0;
     }
@@ -38,7 +44,21 @@ class arrayListType{
 
     }
     void insertEnd(int newValue){
-
+        if (length<maxSize){
+            list[length]=newValue;
+            length++;
+        } else {
+        int *newList=new int(length+1);
+        newList[length]=newValue;
+        for (int i=0; i<length; i++){
+            newList[i]=list[i];
+        }
+        length++;
+        maxSize=length;
+        if (list!=NULL)
+            delete[] list;
+        list=newList;
+        }
     }
 };
 
