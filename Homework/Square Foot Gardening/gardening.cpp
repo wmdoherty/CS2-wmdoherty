@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 #include <vector>
 #include <algorithm>
 
@@ -39,18 +40,27 @@ class Box{
         cout << "12. Plum Tree" << endl << endl;
         cout << "Selection: ";
     }
+
+    void printBox(){
+        cout << " _ _ _ _ " << endl;
+        cout << "|       |" << endl;
+        cout << "|       |" << endl;
+        cout << "|       |" << endl;
+        cout << "|_ _ _ _|" << endl;
+
+    }
 };
 
 class Plant {
     string name;
     vector <int> dimensions;
     int area;
-    int boxNumber;
+    vector <vector<string> > boxes;
+    vector <string> plantsInBox;
 
     public:
     Plant() {
         area=0;
-        boxNumber=0;
     }
 
     void addPlantWidth(int newDimension) {
@@ -78,48 +88,80 @@ class Plant {
         sort(dimensions.rbegin(), dimensions.rend());
     }
 
-    int determineBoxNumber(){
+    void calcPlantsInBox(){
         for (unsigned int i=0; i<dimensions.size(); i++){
+            plantsInBox.clear();
             if(dimensions[i]==4){
-                boxNumber++;
+                plantsInBox.push_back("1 tree");
+                boxes.push_back(plantsInBox);
             }
             else if(dimensions[i]==3){
-                boxNumber++;
+                int smallPlant=0;
+                plantsInBox.push_back("1 shrub");
                 int openSpaces=7;
                 while (openSpaces>0 && i<dimensions.size()){
-                    if (dimensions[i+1]==1)
+                    if (dimensions[i+1]==1){
                         i++;
+                        smallPlant++;
+                    }
                     else break;
                 }
+                if(smallPlant!=0)
+                    plantsInBox.push_back(to_string(smallPlant)+ " small plants");
+                boxes.push_back(plantsInBox);
             }
             else if(dimensions[i]==2){
-                boxNumber++;
+                int mediumPlant=1;
+                int smallPlant=0;
                 int openSpaces=12;
                 while(openSpaces>0 && i<dimensions.size()){
                     if (dimensions[i+1]==2){
+                        mediumPlant++;
                         openSpaces=openSpaces-4;
                         i++;
                     }
-                    else if(dimensions[i+1]==0){
+                    else if(dimensions[i+1]==1){
+                        smallPlant++;
                         openSpaces--;
                         i++;
                     }
                     else break;
                 }
+                plantsInBox.push_back(to_string(mediumPlant)+" medium plants");
+                if(smallPlant!=0)
+                    plantsInBox.push_back(to_string(smallPlant)+" small plants");
+                boxes.push_back(plantsInBox);
             }
             else if(dimensions[i]==1){
-                boxNumber++;
+                int smallPlant=1;
                 int openSpaces=15;
                 while(openSpaces>0 && i<dimensions.size()){
                     if(dimensions[i+1]==1) {
                         i++;
                         openSpaces--;
+                        smallPlant++;
                     }
                     else break;
                 }
+                plantsInBox.push_back(to_string(smallPlant)+" small plants");
+                boxes.push_back(plantsInBox);
             }
         }
-        return boxNumber;
+    }
+    int getBoxNumber(){
+        return boxes.size();
+    }
+
+    void output(ostream &out=cout){
+        for(unsigned i=0; i<boxes.size(); i++){
+            out << "Box " << i+1 << " contains: ";
+            for(unsigned j=0; j<boxes[i].size(); j++){
+                out << boxes[i][j] << ' ';
+                if(j==boxes[i].size()-2)
+                    cout << "and ";
+            }
+            out << endl;
+        }
     }
 };
 
@@ -128,32 +170,39 @@ int main(){
     vector <Box> garden;
 
     int selection;
+    int amountOfSelection;
     string answer="y";
     while(answer=="y" || answer=="Y"){ 
         garden[0].printMenu();
         cin >> selection;
-        if(selection<=3) {
-            dimensions.addPlantWidth(1);
-        }
-        else if(selection<=6){
-            dimensions.addPlantWidth(2);
-        }
-        else if(selection<=9){
-            dimensions.addPlantWidth(3);
-        }
-        else if(selection<=12){
-            dimensions.addPlantWidth(4);
-        }
-        else{
-            cout << "Invalid selection. Select a different option." << endl;
-            continue;
+        cout << "How many of these would you like?" << endl;
+        cin >> amountOfSelection;
+        for(int i=0; i<amountOfSelection; i++){
+            if(selection<=3) {
+                dimensions.addPlantWidth(1);
+            }
+            else if(selection<=6){
+                dimensions.addPlantWidth(2);
+            }
+            else if(selection<=9){
+                dimensions.addPlantWidth(3);
+            }
+            else if(selection<=12){
+                dimensions.addPlantWidth(4);
+            }
+            else{
+                cout << "Invalid selection. Select a different option." << endl;
+                continue;
+            }
         }
         cout << "Would you like to add another plant? [Y/y] ";
         cin >> answer;
     }
     dimensions.sortVector();
-    cout << "You will need " << dimensions.determineBoxNumber() << " boxes." << endl;
+    dimensions.calcPlantsInBox();
+    cout << "You will need " << dimensions.getBoxNumber() << " boxes." << endl;
     cout << "Total area of plants=" << dimensions.getTotalArea() << endl;
+    dimensions.output();
 
     return 0;
 }
