@@ -40,15 +40,6 @@ class Box{
         cout << "12. Plum Tree" << endl << endl;
         cout << "Selection: ";
     }
-
-    void printBox(){
-        cout << " _ _ _ _ " << endl;
-        cout << "|       |" << endl;
-        cout << "|       |" << endl;
-        cout << "|       |" << endl;
-        cout << "|_ _ _ _|" << endl;
-
-    }
 };
 
 class Plant {
@@ -73,9 +64,6 @@ class Plant {
 
     int getPlantSquareFeet(int plantNumber){
         return dimensions[plantNumber]*dimensions[plantNumber];
-    }
-    string getPlantName(){
-        return name;
     }
     int getTotalArea(){
         for(unsigned i=0; i<dimensions.size(); i++){
