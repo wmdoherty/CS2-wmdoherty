@@ -84,54 +84,54 @@ class Plant {
                 boxes.push_back(plantsInBox);
             }
             else if(dimensions[i]==3){
-                int smallPlant=0;
+                int smallPlants=0;
                 plantsInBox.push_back("1 shrub");
                 int openSpaces=7;
                 while (openSpaces>0 && i<dimensions.size()){
                     if (dimensions[i+1]==1){
                         i++;
-                        smallPlant++;
+                        smallPlants++;
                     }
                     else break;
                 }
-                if(smallPlant!=0)
-                    plantsInBox.push_back(to_string(smallPlant)+ " small plants");
+                if(smallPlants!=0)
+                    plantsInBox.push_back(to_string(smallPlants)+ " small plants");
                 boxes.push_back(plantsInBox);
             }
             else if(dimensions[i]==2){
-                int mediumPlant=1;
-                int smallPlant=0;
+                int mediumPlants=1;
+                int smallPlants=0;
                 int openSpaces=12;
                 while(openSpaces>0 && i<dimensions.size()){
                     if (dimensions[i+1]==2){
-                        mediumPlant++;
+                        mediumPlants++;
                         openSpaces=openSpaces-4;
                         i++;
                     }
                     else if(dimensions[i+1]==1){
-                        smallPlant++;
+                        smallPlants++;
                         openSpaces--;
                         i++;
                     }
                     else break;
                 }
-                plantsInBox.push_back(to_string(mediumPlant)+" medium plants");
-                if(smallPlant!=0)
-                    plantsInBox.push_back(to_string(smallPlant)+" small plants");
+                plantsInBox.push_back(to_string(mediumPlants)+" medium plants");
+                if(smallPlants!=0)
+                    plantsInBox.push_back(to_string(smallPlants)+" small plants");
                 boxes.push_back(plantsInBox);
             }
             else if(dimensions[i]==1){
-                int smallPlant=1;
+                int smallPlants=1;
                 int openSpaces=15;
                 while(openSpaces>0 && i<dimensions.size()){
                     if(dimensions[i+1]==1) {
                         i++;
                         openSpaces--;
-                        smallPlant++;
+                        smallPlants++;
                     }
                     else break;
                 }
-                plantsInBox.push_back(to_string(smallPlant)+" small plants");
+                plantsInBox.push_back(to_string(smallPlants)+" small plants");
                 boxes.push_back(plantsInBox);
             }
         }
