@@ -79,11 +79,11 @@ class Plant {
     void calcPlantsInBox(){
         for (unsigned int i=0; i<dimensions.size(); i++){
             plantsInBox.clear();
-            if(dimensions[i]==4){
+            if(dimensions[i]==4){ //tree 
                 plantsInBox.push_back("1 tree");
                 boxes.push_back(plantsInBox);
             }
-            else if(dimensions[i]==3){
+            else if(dimensions[i]==3){ //shrub
                 int smallPlants=0;
                 plantsInBox.push_back("1 shrub");
                 int openSpaces=7;
@@ -99,7 +99,7 @@ class Plant {
                     plantsInBox.push_back(to_string(smallPlants)+ " small plants");
                 boxes.push_back(plantsInBox);
             }
-            else if(dimensions[i]==2){
+            else if(dimensions[i]==2){ //medium plant
                 int mediumPlants=1;
                 int smallPlants=0;
                 int openSpaces=12;
@@ -121,7 +121,7 @@ class Plant {
                     plantsInBox.push_back(to_string(smallPlants)+" small plants");
                 boxes.push_back(plantsInBox);
             }
-            else if(dimensions[i]==1){
+            else if(dimensions[i]==1){ //small plant
                 int smallPlants=1;
                 int openSpaces=15;
                 while(openSpaces>0 && i<dimensions.size()){
