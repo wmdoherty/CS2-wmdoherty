@@ -188,7 +188,7 @@ int main(){
     }
     dimensions.sortVector();
     dimensions.calcPlantsInBox();
-    cout << "You will need " << dimensions.getBoxNumber() << " boxes." << endl;
+    cout << endl << "You will need " << dimensions.getBoxNumber() << " boxes." << endl;
     cout << "Total area of plants=" << dimensions.getTotalArea() << endl;
     dimensions.output();
 
