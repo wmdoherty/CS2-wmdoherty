@@ -91,6 +91,7 @@ class Plant {
                     if (dimensions[i+1]==1){
                         i++;
                         smallPlants++;
+                        openSpaces--;
                     }
                     else break;
                 }
