@@ -147,7 +147,7 @@ class Plant {
             for(unsigned j=0; j<boxes[i].size(); j++){
                 out << boxes[i][j] << ' ';
                 if(j==boxes[i].size()-2)
-                    cout << "and ";
+                    out << "and ";
             }
             out << endl;
         }
