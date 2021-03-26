@@ -43,7 +43,6 @@ class Box{
 };
 
 class Plant {
-    string name;
     vector <int> dimensions;
     int area;
     vector <vector<string> > boxes;
@@ -88,8 +87,8 @@ class Plant {
                 plantsInBox.push_back("1 shrub");
                 int openSpaces=7;
                 while (openSpaces>0 && i<dimensions.size()){
-                    if (dimensions[i+1]==1){
-                        i++;
+                    if (dimensions[dimensions.size()-1]==1){
+                        dimensions.pop_back();
                         smallPlants++;
                         openSpaces--;
                     }
@@ -164,7 +163,7 @@ int main(){
     while(answer=="y" || answer=="Y"){ 
         garden[0].printMenu();
         cin >> selection;
-        cout << "How many of these would you like?" << endl;
+        cout << "How many of these would you like? ";
         cin >> amountOfSelection;
         for(int i=0; i<amountOfSelection; i++){
             if(selection<=3) {
@@ -187,10 +186,10 @@ int main(){
         cout << "Would you like to add another plant? [Y/y] ";
         cin >> answer;
     }
+    cout << endl << "Total area of plants = " << dimensions.getTotalArea() << "square feet" << endl;
     dimensions.sortVector();
     dimensions.calcPlantsInBox();
-    cout << endl << "You will need " << dimensions.getBoxNumber() << " boxes." << endl;
-    cout << "Total area of plants=" << dimensions.getTotalArea() << endl << endl;
+    cout << "You will need " << dimensions.getBoxNumber() << " boxes." << endl << endl;
     dimensions.output();
 
     return 0;
