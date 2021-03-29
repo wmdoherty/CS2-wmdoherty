@@ -163,6 +163,10 @@ int main(){
     while(answer=="y" || answer=="Y"){ 
         garden[0].printMenu();
         cin >> selection;
+        if(selection>12){
+            cout << "Invalid selection. Select a different option: "1;
+            cin >> selection;
+        }
         cout << "How many of these would you like? ";
         cin >> amountOfSelection;
         for(int i=0; i<amountOfSelection; i++){
@@ -177,10 +181,6 @@ int main(){
             }
             else if(selection<=12){
                 dimensions.addPlantWidth(4);
-            }
-            else{
-                cout << "Invalid selection. Select a different option." << endl;
-                continue;
             }
         }
         cout << "Would you like to add another plant? [Y/y] ";
