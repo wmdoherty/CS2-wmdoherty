@@ -87,10 +87,10 @@ class Plant {
                 plantsInBox.push_back("1 shrub");
                 int openSpaces=7;
                 while (openSpaces>0 && i<dimensions.size()){
-                    if (dimensions[dimensions.size()-1]==1){
-                        dimensions.pop_back();
+                    if (dimensions[i+1]==1){
                         smallPlants++;
                         openSpaces--;
+                        i++;
                     }
                     else break;
                 }
@@ -164,7 +164,7 @@ int main(){
         garden[0].printMenu();
         cin >> selection;
         if(selection>12){
-            cout << "Invalid selection. Select a different option: "1;
+            cout << "Invalid selection. Select a different option: ";
             cin >> selection;
         }
         cout << "How many of these would you like? ";
