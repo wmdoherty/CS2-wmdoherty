@@ -86,7 +86,7 @@ class Plant {
                 int smallPlants=0;
                 plantsInBox.push_back("1 shrub");
                 int openSpaces=7;
-                while (openSpaces>0 && i<dimensions.size()){
+                while (openSpaces>0){
                     if (dimensions[i+1]==1){
                         smallPlants++;
                         openSpaces--;
@@ -102,7 +102,7 @@ class Plant {
                 int mediumPlants=1;
                 int smallPlants=0;
                 int openSpaces=12;
-                while(openSpaces>0 && i<dimensions.size()){
+                while(openSpaces>0){
                     if (dimensions[i+1]==2){
                         mediumPlants++;
                         openSpaces=openSpaces-4;
@@ -123,7 +123,7 @@ class Plant {
             else if(dimensions[i]==1){ //small plant
                 int smallPlants=1;
                 int openSpaces=15;
-                while(openSpaces>0 && i<dimensions.size()){
+                while(openSpaces>0){
                     if(dimensions[i+1]==1) {
                         i++;
                         openSpaces--;
