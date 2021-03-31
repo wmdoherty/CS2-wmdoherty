@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 
 using namespace std;
 
@@ -25,19 +26,38 @@ class DoubleLink {
     }
 
     void add(DoubleLink *newList){ //wire list together any way that is fast
-        DoubleLink *endNewList;
-        endNewList=newList.end();
+        DoubleLink *endNewList, *t1;
+        t2=next;
+        endNewList=newList->end();
+        t1=this->next;
         this->next=newList;
         newList->prev=this;
-        endNewList->next=this->next;
-        this->next->prev=endNewList;
+        endNewList->next=t1;
+        if(endNewList->next!=NULL)
+            endNewList->next->prev=endNewList;
     }
     void append(DoubleLink *newList){ //wire to end of list
 
     }
+    void print(){
+        cout << dec << value << " <- " << hex << prev << " -> " << next  << endl;
+        if (next!=NULL)
+            next->print();
+    }
 };
 
 int main(){
-
+    DoubleLink first(13);
+    first.add(new DoubleLink(15));
+    first.add(new DoubleLink(14));
+    DoubleLink *second= new DoubleLink(125);
+    second->add(new DoubleLink(126));
+    cout << "First List:" << endl;
+    first.print();
+    cout << "second list:" << endl;
+    second->print();
+    first.add(second);
+    cout << "appended list:" << endl;
+    first.print();
     return 0;
 }
