@@ -24,21 +24,26 @@ class Stack{ //stack of integers -> template
         values=new int[max];
     }
 
-    bool isEmpty(){
+    bool isEmpty() const{
         return (current==0);
     }
 
-    bool isFull(){
-        return (current==max)
+    bool isFull() const{
+        return (current==max);
     }
     void push(int x){
-        if (current==max) throw StackException("Stack Overflow");
+        if (isFull()) throw StackException("Stack Overflow");
         values[current]=x;
         current++;
     }
-    int pop(); //modifies stack by removing top item
+    int pop(){ //modifies stack by removing top item
+        int value=top();
+        current--;
+        return value;
+
+    }
     int top(){ //looks at top item
-    if (current==0) throw StackException("Stack Underflow");
+        if (isEmpty()) throw StackException("Stack Underflow");
         return values[current-1];
     }
     ~Stack(){
@@ -47,5 +52,13 @@ class Stack{ //stack of integers -> template
 };
 
 int main(){
-
+    Stack s;
+    s.push(10);
+    s.push(20);
+    try{
+    cout << s.top()<< " " << s.pop() << " " << s.pop() << endl;
+    s.pop();
+    } catch (StackException s){
+        cerr <<"Stack Exception " << s.getDescription() << endl;
+    }
 }
