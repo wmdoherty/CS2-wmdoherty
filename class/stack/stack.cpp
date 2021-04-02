@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cstdlib>
 
 using namespace std;
 
@@ -51,14 +52,35 @@ class Stack{ //stack of integers -> template
     }
 };
 
+bool isNumber(const string& str){
+    for(char const &c : str){
+        if (isdigit(c)==0) return false;
+    }
+    return true;
+}
+
 int main(){
-    Stack s;
-    s.push(10);
-    s.push(20);
-    try{
-    cout << s.top()<< " " << s.pop() << " " << s.pop() << endl;
-    s.pop();
-    } catch (StackException s){
-        cerr <<"Stack Exception " << s.getDescription() << endl;
+    Stack s; // 100 elements
+    string input="";
+    while (input!="done"){
+        cout << "[" << input << "]" << endl;
+        if (input=="+"){
+            int a=s.pop();
+            int b=s.pop();
+            s.push(a+b);
+        }
+        if (input=="*"){
+            int a=s.pop();
+            int b=s.pop();
+            s.push(a*b);
+        }
+        else if (isNumber(input)){
+            s.push(atoi(input.c_str()));
+        }
+
+        cin >> input;
+        if (!s.isEmpty()){
+            cout << "=" << s.top() << endl;
+        }
     }
 }
