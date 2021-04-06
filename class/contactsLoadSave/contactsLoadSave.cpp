@@ -31,7 +31,8 @@ class Contacts{
     void remove(const Contact &c){
         unsigned i=0;
         for (i=0;i<list.size();]i++){
-            if (list[i]==c) break;
+            if (list[i]==c) 
+                break;
         }
         if (i<list.size())
             list.erase(list.begin()+i);
@@ -65,9 +66,14 @@ int main(){
             cout << "enter a file name"<< endl;
             cin >> filename;
             ifstream in;
+            if (in.good()){
             in.open(filename.c_str());
             in >> myContacts;
             in.close();
+            }
+            else{
+                cerr << "Error in reading file " << filename << endl;
+            }
         }
         else if(input=="save"){
             string filename;
