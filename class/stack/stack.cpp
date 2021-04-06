@@ -54,6 +54,7 @@ template <class t> class Stack{ //stack of integers -> template
 };
 
 class MathException: public StackException{
+    public:
     MathException(string newDescription):StackException(newDescription){
     }
 };
@@ -73,7 +74,7 @@ int main(){
         if (input=="/"){
             double a=s.pop();
             double b=s.pop();
-            if (b==0.0) throw MathException("Divide by zero";)
+            if (b==0.0) throw MathException("Divide by zero");
             s.push(a/b);
         }
         else if(input=="-"){
