@@ -4,6 +4,7 @@
 using namespace std;
 
 class StackException{
+    protected:
     string description;
     public:
     StackException(string newDescription){
@@ -14,15 +15,15 @@ class StackException{
     }
 };
 
-class Stack{ //stack of integers -> template
-    int *values;
+template <class t> class Stack{ //stack of integers -> template
+    t *values;
     int current;
     int max;
     public:
     Stack(int newMax=100){
         current=0;
         max=newMax;
-        values=new int[max];
+        values=new t[max];
     }
 
     bool isEmpty() const{
@@ -32,13 +33,13 @@ class Stack{ //stack of integers -> template
     bool isFull() const{
         return (current==max);
     }
-    void push(int x){
+    void push(t x){
         if (isFull()) throw StackException("Stack Overflow");
         values[current]=x;
         current++;
     }
     int pop(){ //modifies stack by removing top item
-        int value=top();
+        t value=top();
         current--;
         return value;
 
@@ -52,6 +53,11 @@ class Stack{ //stack of integers -> template
     }
 };
 
+class MathException: public StackException{
+    MathException(string newDescription):StackException(newDescription){
+    }
+};
+
 bool isNumber(const string& str){
     for(char const &c : str){
         if (isdigit(c)==0) return false;
@@ -60,18 +66,29 @@ bool isNumber(const string& str){
 }
 
 int main(){
-    Stack s; // 100 elements
+    Stack<double> s; // 100 elements
     string input="";
     while (input!="done"){
         cout << "[" << input << "]" << endl;
-        if (input=="+"){
-            int a=s.pop();
-            int b=s.pop();
+        if (input=="/"){
+            double a=s.pop();
+            double b=s.pop();
+            if (b==0.0) throw MathException("Divide by zero";)
+            s.push(a/b);
+        }
+        else if(input=="-"){
+            double a=s.pop();
+            double b=s.pop();
+            s.push(a-b);
+        }
+        else if (input=="+"){
+            double a=s.pop();
+            double b=s.pop();
             s.push(a+b);
         }
         if (input=="*"){
-            int a=s.pop();
-            int b=s.pop();
+            double a=s.pop();
+            double b=s.pop();
             s.push(a*b);
         }
         else if (isNumber(input)){
