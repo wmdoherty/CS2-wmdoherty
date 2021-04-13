@@ -45,7 +45,10 @@ template <class t> class Stack{ //stack of integers -> template
     int pop(){ //modifies stack by removing top item
         t retval;
         retval=top();
-        
+        LLNode<t> *p;
+        p=head;
+        head=head->next;
+        delete p;
         return retval;
     }
     int top() const{ //looks at top item
@@ -53,6 +56,9 @@ template <class t> class Stack{ //stack of integers -> template
         return head->value;
     }
     ~Stack(){
+        while(!isEmpty()){
+            pop();
+        }
     }
 };
 
