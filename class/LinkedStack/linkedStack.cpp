@@ -41,6 +41,7 @@ template <class t> class Stack{ //stack of integers -> template
         p=new LLNode<t>();
         p->value=x;
         p->next=head;
+        head=p;
     }
     int pop(){ //modifies stack by removing top item
         t retval;
