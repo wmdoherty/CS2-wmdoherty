@@ -20,45 +20,50 @@ template <class t> class DLNode{
 template <class t>
 class Queue{
     DLNode<t> *head, *tail;
-    int next (int index){
-        return (index+1)%max;
-        // return (index++)&(max-1);
-    }
     public:
-    Queue(int newMax){
-        max=pow(2,ceil(log2((double)newMax))); //find the next higher power of 2 from "suggested" value
-        values=new t[max]();
-        head=0;
-        tail=0;
-
+    Queue(){
+        head=NULL;
+        tail=NULL;
     }
     bool isEmpty const(){
-        return head==tail;
+        return (head != NULL);
     }
     bool isFull const(){
-        return head==next(tail);
+        return false;
     }
     void push_back(const t &newValue){
-        if (isFull()) throw QueueException("Queue is Full");
-        values[tail]=newValue;
-        tail=next(tail);
+        DLNode<t> *;
+        p= new DLNode<t>();
+        p->value=newValue;
+        p->next=NULL;
+        if(isEmpty()) {
+            p->prev=NULL;
+            head=p;
+        }else{
+            tail->next=p;
+            p->prev=tail;
+        }
+        tail=p;
     }
-    t front() {
-        if(isEmpty()) throw QueueException("Queue is Empty");
-        return values[head];
+    t front() const{
+        if(isEmpty()) throw QueueException("Empty Queue");
+        return head->value;
     }
     t remove_front(){
-        t temp=front();
-        head=next(head);
-        return temp;
+        t returnValue=front();
+        DLNode<t> *p=head;
+        head=p->next;
+        head->next=NULL;
+        delete p;
+        return returnValue;
     }
 };
 
 int main(){
-    Queue<double> d(100);
+    Queue<double> d;
     d.push_back(10.0);
     d.push_back(20.0);
-    cout << d.front() << endl;
+    cout << "Front" << d.front() << endl;
     cout << d.remove_front() << endl;
     cout << d.remove_front() << endl;
 
