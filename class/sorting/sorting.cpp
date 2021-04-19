@@ -3,6 +3,20 @@
 
 using namespace std;
 
+bool find(vector <int> ints, int seekValue){
+    int low=0;
+    int high=ints.size()-1;
+    if (ints[low]==seekValue) return true;
+    if (ints[high]==seekValue) return true;
+    while(true){
+        int m=(low+high)/2;
+        if (ints[m]==seekValue) return true;
+        if (ints[m]<seekValue) low=m;
+        if (ints[m]>seekValue) high=m;
+        if(low==high) return false;
+    }
+}
+
 int main(){
     vector <int> ints;
     ints.push_back(1);
