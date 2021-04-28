@@ -38,6 +38,14 @@ class Spreadsheet{
 			cout << endl;
 		}
 	}
+
+	string getCellValue(string name){
+		for(unsigned i=0; i<cells.size(); i++){
+			if (cells[i][0]==name)
+				return cells[i][1];
+		}
+		return "Not a valid cell name";
+	}
 };
 
 int main() {
@@ -48,4 +56,7 @@ int main() {
 	a.addCellLetter("32");
 	a.addCellNumber("22");
 	a.output();
+	cout << endl;
+	cout << a.getCellValue("A3") << endl;
+	cout << a.getCellValue("A4") << endl;
 }
