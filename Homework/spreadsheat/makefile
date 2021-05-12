@@ -9,7 +9,7 @@ CXXFLAGS = -c -g -Wall -std=c++17
 PROGRAM = spreadsheet.exe
 
 # list .cpp files separated by space
-CPPFILES = Spreadsheet.cpp 
+CPPFILES = Spreadsheet2.cpp 
 
 # make build rule/default rule that'll be run when we run "make"
 # first compile each file to object file
