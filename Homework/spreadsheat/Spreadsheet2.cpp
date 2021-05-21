@@ -184,7 +184,10 @@ int main() {
     string line;
     char letter ='A';
     int number=1;
-    ifstream file("text.txt");
+    string fileName;
+    cout << "Enter a file name: ";
+    cin >> fileName;
+    ifstream file(fileName);
     if (file.is_open()){
         while ( getline (file,line) ){
             string cell=letter+to_string(number);
